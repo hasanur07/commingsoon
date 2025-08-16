@@ -48,9 +48,14 @@ export default function IndexPage() {
         </div>
       </main>
 
-      <div ref={buttonRef}
-        className="button fixed z-20 top-0 left-0 flex gap-2 bg-white rounded-full p-2 pr-3 items-center pointer-events-none translate-[calc(100vw-100%-15px),calc(100vh-100%-15px)] transition-transform duration-300 ease-soft-spring"
-        style={{fontFamily: "'Lexend', sans-serif"}}>
+      <div
+        ref={buttonRef}
+        className="button fixed z-20 top-0 left-0 flex gap-2 bg-white rounded-full p-2 pr-3 items-center pointer-events-none transition-transform duration-300 ease-soft-spring"
+        style={{
+          fontFamily: "'Lexend', sans-serif",
+          transform: "translate(calc(100vw - 100% - 15px), calc(100vh - 100% - 15px))"
+        }}
+      >
         <ArrowOutward className="flex bg-black rounded-full p-1 w-8 h-8" />
         <h5 className="text-sm text-black font-bold">Get Demo</h5>
       </div>
