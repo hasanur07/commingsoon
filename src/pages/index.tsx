@@ -23,12 +23,38 @@ export default function IndexPage() {
       }
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      const button = buttonRef.current;
+      if (button) {
+        const touch = e.touches[0];
+        const x = touch.clientX - button.offsetWidth / 2;
+        const y = touch.clientY - button.offsetHeight / 2;
+        button.style.transform = `translate(${x}px, ${y}px)`;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      const button = buttonRef.current;
+      if (button) {
+        button.style.transform = "translate(calc(100vw - 100% - 15px), calc(100vh - 100% - 15px))";
+      }
+    };
+
     document.body.addEventListener("mousemove", handleMouseMove);
     document.body.addEventListener("mouseout", handleMouseOut);
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isMobile) {
+      document.body.addEventListener("touchmove", handleTouchMove);
+      document.body.addEventListener("touchend", handleTouchEnd);
+    }
 
     return () => {
       document.body.removeEventListener("mousemove", handleMouseMove);
       document.body.removeEventListener("mouseout", handleMouseOut);
+      if (isMobile) {
+        document.body.removeEventListener("touchmove", handleTouchMove);
+        document.body.removeEventListener("touchend", handleTouchEnd);
+      }
     };
   }, []);
   return (
