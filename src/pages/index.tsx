@@ -25,11 +25,15 @@ export default function IndexPage() {
 
     const handleTouchMove = (e: TouchEvent) => {
       const button = buttonRef.current;
-      if (button) {
         const touch = e.touches[0];
+      if (button) {
         const x = touch.clientX - button.offsetWidth / 2;
         const y = touch.clientY - button.offsetHeight / 2;
         button.style.transform = `translate(${x}px, ${y}px)`;
+      }
+      const main = document.querySelector("main");
+      if (main) {
+        main.style.transform = `translate(${(touch.clientX - main.offsetWidth / 2) / 16}px, ${(touch.clientY - main.offsetHeight / 2) / 16}px)`;
       }
     };
 
@@ -37,6 +41,10 @@ export default function IndexPage() {
       const button = buttonRef.current;
       if (button) {
         button.style.transform = "translate(calc(100vw - 100% - 15px), calc(100svh - 100% - 15px))";
+      }
+      const main = document.querySelector("main");
+      if (main) {
+        main.style.transform = "translate(0, 0)";
       }
     };
 
@@ -59,7 +67,7 @@ export default function IndexPage() {
   }, []);
   return (
     <>
-      <main className="flex flex-col w-100vw h-[100svh] justify-center items-center font-bold text-2xl">
+      <main className="flex flex-col w-100vw h-[100svh] justify-center items-center font-bold text-2xl transition-transform duration-300 ease-soft-spring pointer-events-none">
         <div className="flex gap-2 items-center">
           <h5>Almost</h5>
           <div className="flex gap-2 items-center py-2 px-4 bg-gray-800 rounded-full">
