@@ -19,7 +19,7 @@ export default function IndexPage() {
     const handleMouseOut = () => {
       const button = buttonRef.current;
       if (button) {
-        button.style.transform = "translate(calc(100vw - 100% - 15px), calc(100vh - 100% - 15px))";
+        button.style.transform = "translate(calc(100vw - 100% - 15px), calc(100svh - 100% - 15px))";
       }
     };
 
@@ -36,7 +36,7 @@ export default function IndexPage() {
     const handleTouchEnd = () => {
       const button = buttonRef.current;
       if (button) {
-        button.style.transform = "translate(calc(100vw - 100% - 15px), calc(100vh - 100% - 15px))";
+        button.style.transform = "translate(calc(100vw - 100% - 15px), calc(100svh - 100% - 15px))";
       }
     };
 
