@@ -1,3 +1,4 @@
+import api from "@/api";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Spinner } from "@heroui/spinner";
 import { useEffect, useState } from "react";
@@ -20,11 +21,9 @@ export default function PrivacyPage() {
     useEffect(() => {
         async function fetchPolicy() {
             try {
-                const res = await fetch("https://api.doclet.app/policy/getPolicy", {
-                    method: "POST",
-                    body: JSON.stringify({ type: "privacy" })
-                });
-                const data: Policy = await res.json();
+                const res = await api.post("/policy/getPolicy", { type: "privacy" });
+                console.log("Fetched privacy policy:", res.data);
+                const data: Policy = res.data;
                 setPolicy(data);
             } catch (err) {
                 console.error("Failed to load privacy policy", err);
